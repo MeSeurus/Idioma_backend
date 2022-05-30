@@ -3,6 +3,7 @@ package ru.seurus.idioma.controller.stock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.seurus.idioma.entity.buy.BuyMetalRus;
 import ru.seurus.idioma.entity.stock.StockMetalRus;
 import ru.seurus.idioma.exception.ResourceNotFoundException;
 import ru.seurus.idioma.repository.buy.BuyMetalRusRepository;
@@ -49,5 +50,17 @@ public class StockMetalRusController {
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
         return ResponseEntity.ok(response);
+    }
+
+    @PutMapping("/stock_metal_rus/{id}")
+    public ResponseEntity<StockMetalRus> updateStockMetalRus(@PathVariable Integer id, @RequestBody StockMetalRus stockMetalRusUpdate) {
+        StockMetalRus stockMetalRus = stockMetalRusRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Not exist with id: " + id));
+
+        stockMetalRus.setQuantityCatCurrent(stockMetalRusUpdate.getQuantityCatCurrent());
+        stockMetalRus.setQuantityManCurrent(stockMetalRusUpdate.getQuantityManCurrent());
+
+        StockMetalRus updatedStockMetalRus = stockMetalRusRepository.save(stockMetalRus);
+        return ResponseEntity.ok(updatedStockMetalRus);
     }
 }
