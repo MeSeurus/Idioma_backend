@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @EntityListeners(AuditingEntityListener.class)
 @Entity
 @Table(name = "STOCK_METAL_IMPORT")
-public class StockMetalImport {
+public class StockMetalImport implements MethodsStock{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,20 +39,20 @@ public class StockMetalImport {
     @Column(name = "QUANTITY_CAT_BOUGHT")
     private Double quantityCatBought;
 
-    @Column(name = "QUANTITY_MAN_BOUGHT")
-    private Double quantityManBought;
+    @Column(name = "QUANTITY_BOUGHT")
+    private Double quantityBought;
 
     @Column(name = "QUANTITY_CAT_CURRENT")
     private Double quantityCatCurrent;
 
-    @Column(name = "QUANTITY_MAN_CURRENT")
-    private Double quantityManCurrent;
+    @Column(name = "QUANTITY_CURRENT")
+    private Double quantityCurrent;
 
     @Column(name = "PRICE_PU_CAT")
     private Double pricePUCat;
 
-    @Column(name = "PRICE_PU_MAN")
-    private Double pricePUMan;
+    @Column(name = "PRICE_PU")
+    private Double pricePU;
 
     @Column(name = "PRICE_EURO")
     private Double priceEuro;

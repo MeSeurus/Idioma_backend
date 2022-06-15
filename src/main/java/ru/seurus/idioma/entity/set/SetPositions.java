@@ -12,8 +12,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 @Entity
-@Table(name = "SET")
-public class Set {
+@Table(name = "SET_POSITIONS")
+public class SetPositions {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,12 +23,15 @@ public class Set {
     @Column(name = "NAME")
     private String name;
 
-    @Column(name = "PRICE")
-    private Double price;
-
     @Column(name = "QUANTITY")
     private Double quantity;
 
-    @Column(name = "IS_EMPTY")
-    private Boolean isEmpty;
+    @Column(name = "TABLE_NAME")
+    private String tableName;
+
+    @Column(name = "RECIPE_ID")
+    private Integer recipeId;
+
+    @Column(name = "SET_ID")
+    private Integer setId;
 }

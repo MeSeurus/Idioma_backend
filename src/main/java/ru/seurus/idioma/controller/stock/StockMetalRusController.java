@@ -58,7 +58,7 @@ public class StockMetalRusController {
                 .orElseThrow(() -> new ResourceNotFoundException("Not exist with id: " + id));
 
         stockMetalRus.setQuantityCatCurrent(stockMetalRusUpdate.getQuantityCatCurrent());
-        stockMetalRus.setQuantityManCurrent(stockMetalRusUpdate.getQuantityManCurrent());
+        stockMetalRus.setQuantityCurrent(stockMetalRusUpdate.getQuantityCurrent());
 
         StockMetalRus updatedStockMetalRus = stockMetalRusRepository.save(stockMetalRus);
         return ResponseEntity.ok(updatedStockMetalRus);

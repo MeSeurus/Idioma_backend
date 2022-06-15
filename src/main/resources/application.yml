@@ -6,6 +6,8 @@ spring:
     url:  jdbc:postgresql://localhost:5432/idioma
     username: postgres
     password: geek
+    hikari:
+      schema: public
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:

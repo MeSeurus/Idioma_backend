@@ -3,11 +3,8 @@ package ru.seurus.idioma.controller.buy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.seurus.idioma.entity.buy.BuyElectrics;
-import ru.seurus.idioma.entity.buy.BuyMetalImport;
 import ru.seurus.idioma.entity.buy.BuyMetalRus;
 import ru.seurus.idioma.exception.ResourceNotFoundException;
-import ru.seurus.idioma.repository.buy.BuyMetalImportRepository;
 import ru.seurus.idioma.repository.buy.BuyMetalRusRepository;
 
 import java.util.HashMap;

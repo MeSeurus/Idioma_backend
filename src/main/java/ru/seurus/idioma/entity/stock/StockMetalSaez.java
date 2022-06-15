@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @EntityListeners(AuditingEntityListener.class)
 @Entity
 @Table(name = "STOCK_METAL_SAEZ")
-public class StockMetalSaez {
+public class StockMetalSaez implements MethodsStock{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,8 +45,8 @@ public class StockMetalSaez {
     @Column(name = "PRICE_PU_EURO")
     private Double pricePUEuro;
 
-    @Column(name = "PRICE_PU_RUBLE")
-    private Double pricePURuble;
+    @Column(name = "PRICE_PU")
+    private Double pricePU;
 
     @Column(name = "PRICE_RESULT")
     private Double priceResult;
