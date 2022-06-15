@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.seurus.idioma.entity.stock.StockMetalImport;
+import ru.seurus.idioma.entity.stock.StockMetalRus;
 import ru.seurus.idioma.exception.ResourceNotFoundException;
 import ru.seurus.idioma.repository.buy.BuyMetalImportRepository;
 import ru.seurus.idioma.repository.stock.StockMetalImportRepository;
@@ -49,5 +50,17 @@ public class StockMetalImportController {
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
         return ResponseEntity.ok(response);
+    }
+
+    @PutMapping("/stock_metal_import/{id}")
+    public ResponseEntity<StockMetalImport> updateStockMetalImport(@PathVariable Integer id, @RequestBody StockMetalImport stockMetalImportUpdate) {
+        StockMetalImport stockMetalImport = stockMetalImportRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Not exist with id: " + id));
+
+        stockMetalImport.setQuantityCatCurrent(stockMetalImportUpdate.getQuantityCatCurrent());
+        stockMetalImport.setQuantityCurrent(stockMetalImportUpdate.getQuantityCurrent());
+
+        StockMetalImport updatedStockMetalImport = stockMetalImportRepository.save(stockMetalImport);
+        return ResponseEntity.ok(updatedStockMetalImport);
     }
 }

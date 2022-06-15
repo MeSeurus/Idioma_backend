@@ -14,12 +14,15 @@ import java.time.LocalDate;
 @EntityListeners(AuditingEntityListener.class)
 @Entity
 @Table(name = "STOCK_PLASMA")
-public class StockPlasma {
+public class StockPlasma implements MethodsStock{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Integer id;
+
+    @Column(name = "RECIPE_ID")
+    private Integer recipeId;
 
     @Column(name = "NAME")
     private String name;

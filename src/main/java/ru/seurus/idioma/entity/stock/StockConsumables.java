@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @EntityListeners(AuditingEntityListener.class)
 @Entity
 @Table(name = "STOCK_CONSUMABLES")
-public class StockConsumables {
+public class StockConsumables implements MethodsStock {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
