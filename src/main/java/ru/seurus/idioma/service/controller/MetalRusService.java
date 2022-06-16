@@ -16,26 +16,26 @@ public class MetalRusService {
     @Autowired
     private StockMetalRusRepository stockMetalRusRepository;
 
-    public HashMap<String, String> cycleMetalRus(Integer quantity, SetPositions set) {
-        HashMap<String, String> response = new HashMap<>();
+    public HashMap<String, Object> cycleMetalRus(Integer quantity, SetPositions set) {
+        HashMap<String, Object> response = new HashMap<>();
         try {
             if (stockMetalRusRepository.getStockQuantity(set.getRecipeId()) < quantity*set.getQuantity()) {
                 response.put("name", set.getName());
-                response.put("current", stockMetalRusRepository.getStockQuantity(set.getRecipeId()).toString());
-                response.put("needed", (set.getQuantity()).toString());
+                response.put("current", stockMetalRusRepository.getStockQuantity(set.getRecipeId()));
+                response.put("needed", set.getQuantity());
                 response.put("result", "Недостаточно");
                 response.put("id", set.getRecipeId().toString());
             } else {
                 response.put("name", set.getName());
-                response.put("current", stockMetalRusRepository.getStockQuantity(set.getRecipeId()).toString());
-                response.put("needed", (set.getQuantity()).toString());
+                response.put("current", stockMetalRusRepository.getStockQuantity(set.getRecipeId()));
+                response.put("needed", set.getQuantity());
                 response.put("result", "Достаточно");
                 response.put("id", set.getRecipeId().toString());
             }
         } catch (NullPointerException exception) {
             response.put("name", set.getName());
             response.put("current", "-");
-            response.put("needed", (set.getQuantity()).toString());
+            response.put("needed", set.getQuantity());
             response.put("result", "Недостаточно");
             response.put("id", set.getRecipeId().toString());
         }

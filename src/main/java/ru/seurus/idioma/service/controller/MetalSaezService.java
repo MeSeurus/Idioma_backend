@@ -19,26 +19,26 @@ public class MetalSaezService {
     @Autowired
     private StockMetalSaezRepository stockMetalSaezRepository;
 
-    public HashMap<String, String> cycleMetalSaez(Integer quantity, SetPositions set) {
-        HashMap<String, String> response = new HashMap<>();
+    public HashMap<String, Object> cycleMetalSaez(Integer quantity, SetPositions set) {
+        HashMap<String, Object> response = new HashMap<>();
         try {
             if (stockMetalSaezRepository.getStockQuantity(set.getRecipeId()) < quantity*set.getQuantity()) {
                 response.put("name", set.getName());
-                response.put("current", stockMetalSaezRepository.getStockQuantity(set.getRecipeId()).toString());
-                response.put("needed", (set.getQuantity()).toString());
+                response.put("current", stockMetalSaezRepository.getStockQuantity(set.getRecipeId()));
+                response.put("needed", set.getQuantity());
                 response.put("result", "Недостаточно");
                 response.put("id", set.getRecipeId().toString());
             } else {
                 response.put("name", set.getName());
-                response.put("current", stockMetalSaezRepository.getStockQuantity(set.getRecipeId()).toString());
-                response.put("needed", (set.getQuantity()).toString());
+                response.put("current", stockMetalSaezRepository.getStockQuantity(set.getRecipeId()));
+                response.put("needed", set.getQuantity());
                 response.put("result", "Достаточно");
                 response.put("id", set.getRecipeId().toString());
             }
         } catch (NullPointerException exception) {
             response.put("name", set.getName());
             response.put("current", "-");
-            response.put("needed", (set.getQuantity()).toString());
+            response.put("needed", set.getQuantity());
             response.put("result", "Недостаточно");
             response.put("id", set.getRecipeId().toString());
         }

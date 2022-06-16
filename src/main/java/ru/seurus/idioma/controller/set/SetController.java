@@ -87,7 +87,7 @@ public class SetController {
 
     @GetMapping("/set/status/{id}")
     public String getSetStatus(@PathVariable Integer id, @RequestBody Integer quantity) {
-        List<HashMap<String, String>> response = new ArrayList<>();
+        List<HashMap<String, Object>> response = new ArrayList<>();
 //        if (id.equals(1) || id.equals("1")) {
         List<SetPositions> positions = setPositionsRepository.forCheck(id);
             for (SetPositions position : positions) {
@@ -120,7 +120,7 @@ public class SetController {
                 }
 //            }
         }
-        for (HashMap<String, String> item : response) {
+        for (HashMap<String, Object> item : response) {
             if (item.containsValue("Недостаточно")) {
                 return "Error";
             } else {
@@ -131,8 +131,8 @@ public class SetController {
     }
 
     @GetMapping("/set/info/{id}")
-    public ResponseEntity<List<HashMap<String, String>>> getSetInfo(@PathVariable Integer id) {
-        List<HashMap<String, String>> response = new ArrayList<>();
+    public ResponseEntity<List<HashMap<String, Object>>> getSetInfo(@PathVariable Integer id) {
+        List<HashMap<String, Object>> response = new ArrayList<>();
 //        if (id.equals(1) || id.equals("1")) {
             List<SetPositions> positions = setPositionsRepository.forCheck(id);
             for (SetPositions position : positions) {
