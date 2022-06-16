@@ -16,26 +16,26 @@ public class MetalImportService {
     @Autowired
     private StockMetalImportRepository stockMetalImportRepository;
 
-    public HashMap<String, String> cycleMetalImport(Integer quantity, SetPositions set) {
-        HashMap<String, String> response = new HashMap<>();
+    public HashMap<String, Object> cycleMetalImport(Integer quantity, SetPositions set) {
+        HashMap<String, Object> response = new HashMap<>();
         try {
             if (stockMetalImportRepository.getStockQuantity(set.getRecipeId()) < quantity*set.getQuantity()) {
                 response.put("name", set.getName());
-                response.put("current", stockMetalImportRepository.getStockQuantity(set.getRecipeId()).toString());
-                response.put("needed", (set.getQuantity()).toString());
+                response.put("current", stockMetalImportRepository.getStockQuantity(set.getRecipeId()));
+                response.put("needed", set.getQuantity());
                 response.put("result", "Недостаточно");
                 response.put("id", set.getRecipeId().toString());
             } else {
                 response.put("name", set.getName());
-                response.put("current", stockMetalImportRepository.getStockQuantity(set.getRecipeId()).toString());
-                response.put("needed", (set.getQuantity()).toString());
+                response.put("current", stockMetalImportRepository.getStockQuantity(set.getRecipeId()));
+                response.put("needed", set.getQuantity());
                 response.put("result", "Достаточно");
                 response.put("id", set.getRecipeId().toString());
             }
         } catch (NullPointerException exception) {
             response.put("name", set.getName());
             response.put("current", "-");
-            response.put("needed", (set.getQuantity()).toString());
+            response.put("needed", set.getQuantity());
             response.put("result", "Недостаточно");
             response.put("id", set.getRecipeId().toString());
         }
